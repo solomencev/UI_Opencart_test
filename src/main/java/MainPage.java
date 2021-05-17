@@ -8,34 +8,35 @@ public class MainPage {
 
         this.driver = driver;
     }
+
     By emailField = By.xpath("//*[@name='email']");
     By passwordField = By.xpath("//*[@name='password']");
     By submitButton = By.xpath("//*[@type='submit']");
     By ErrorMessage = By.xpath("//*[text()=' Warning: No match for E-Mail Address and/or Password.']");
 
-    public UserPage submit(){
+    public UserPage submit() {
         driver.findElement(submitButton);
         return new UserPage(driver);
     }
 
-    public MainPage typeUserEmail(String email){
+    public MainPage typeUserEmail(String email) {
         driver.findElement(emailField).sendKeys(email);
         return this;
     }
 
-    public MainPage typeUserPassword(String password){
+    public MainPage typeUserPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
         return this;
     }
 
-    public MainPage typeWrongCreds(String email, String password){
+    public MainPage typeWrongCreds(String email, String password) {
         driver.findElement(emailField).sendKeys(email);
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(submitButton).click();
         return this;
     }
 
-    public String errorMessage(){
+    public String errorMessage() {
         return driver.findElement(ErrorMessage).getText();
 
     }

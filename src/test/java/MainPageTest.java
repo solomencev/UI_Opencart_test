@@ -13,7 +13,7 @@ public class MainPageTest {
     private UserPage userPage;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "D:\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -24,7 +24,7 @@ public class MainPageTest {
     }
 
     @Test
-    public void TestsignInCorrectCredential(){
+    public void TestsignInCorrectCredential() {
         mainPage.typeUserEmail("exjfizhh@firste.ml");
         mainPage.typeUserPassword("admin");
         mainPage.submit();
@@ -33,40 +33,38 @@ public class MainPageTest {
     }
 
     @Test
-    public void TestsignInWrongCredential(){
+    public void TestsignInWrongCredential() {
         mainPage.typeWrongCreds("Login", "Password");
         String tag = mainPage.errorMessage();
         Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", tag);
     }
 
     @Test
-    public void TestsignInCorrectEmail(){
+    public void TestsignInCorrectEmail() {
         mainPage.typeWrongCreds("exjfizhh@firste.ml", "password");
         String tag = mainPage.errorMessage();
         Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", tag);
     }
 
     @Test
-    public void TestsignInCorrectPassword(){
+    public void TestsignInCorrectPassword() {
         mainPage.typeWrongCreds("test@gmail.com", "admin");
         String tag = mainPage.errorMessage();
         Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", tag);
     }
 
     @Test
-    public void TestsignInEmptyFields(){
+    public void TestsignInEmptyFields() {
         mainPage.typeWrongCreds("", "");
         String tag = mainPage.errorMessage();
         Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", tag);
     }
 
 
-
-
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
-        }
+    }
 
 
 }

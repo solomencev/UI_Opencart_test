@@ -11,7 +11,7 @@ public class AccountCreatedsuccess {
 
     By tagSuccess = By.xpath("//*[text()='Success']");
 
-    public String congratulation(){
+    public String congratulation() {
         return driver.findElement(tagSuccess).getText();
 
     }
